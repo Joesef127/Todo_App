@@ -21,7 +21,7 @@ What this is:
   <h2 align="center">ToDo App</h2>
   <p>A simple scheduling app built using JavaScript, it records input of tasks, store and display them for reminder. it enables user to delete task when they're done with it and also a completion button</p>
 
-<a href="https://todotaskapp.netlify.app"><strong>➥ Live Demo</strong></a>
+<a href="https://hivetodo.netlify.app"><strong>➥ Live Demo</strong></a>
 
 <br />
 
