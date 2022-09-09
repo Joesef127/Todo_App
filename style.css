@@ -1,0 +1,303 @@
+/* general styling */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+/* reset */
+
+ul {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* side scrollbar */
+::-webkit-scrollbar { width: 10px; }
+
+::-webkit-scrollbar-track { background: hsl(0, 0%, 95%); }
+
+::-webkit-scrollbar-thumb { background: hsl(0, 0%, 80%); }
+
+::-webkit-scrollbar-thumb:hover { background: hsl(0, 0%, 70%); }
+
+
+:root {
+
+  /* colors */
+  --viridian-green: #029d9d;
+  --white-1: #ffffff;
+  --white-2: #f6f6f6;
+
+  /* typography */
+  --ff-abril-fatface: 'Abril Fatface', cursive;
+  --ff-cursive: cursive;
+  --ff-heebo: 'Heebo', sans-serif;
+
+  /* font sizes */
+  --fs-1: 3rem;
+  --fs-2: 2rem;
+  --fs-3: 1.5rem;
+  --fs-4: 1.2rem;
+  --fs-5: 1rem;
+  --fs-6: 0.8rem;
+
+  /* font weights */
+  --fw-1: 700;
+  --fw-2: 600;
+  --fw-3: 500;
+  --fw-4: 400;
+  --fw-5: 300;
+
+  /* border radius */
+  --bdr-1: 8px;
+  --bdr-2: 4px;
+
+  /* transition */
+  --transition-1: all 0.4s ease;
+  --transition-2: all 0.2s ease;
+
+}
+
+body {
+  position: relative;
+  font-family: var(--ff-heebo);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  width: 100vw;
+  height: 100%;
+  overflow: auto;
+  background-color: var(--white-1);
+}
+
+.container {
+  width: 80%;
+  height: 100%;
+  margin: 2.5rem 0;
+}
+
+#todoHeader {
+  font-family: var(--ff-abril-fatface);
+  font-weight: var(--fw-3);
+  font-size: var(--fs-1);
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--viridian-green);
+}
+
+h2 {
+  font-family: var(--ff-cursive);
+  font-weight: var(--fw-2);
+  margin: 10px 0;
+}
+
+#thickNewTask {
+  font-size: var(--fs-2);
+  font-weight: var(--fw-5);
+  color: var(--viridian-green);
+}
+
+#thinNewTask {
+  /* display: block; */
+  font-weight: lighter;
+  color: #dadada;
+}
+
+#todoList {
+  margin-top: 2rem;
+  font-size: var(--fs-4);
+  text-align: center;
+  color: var(--viridian-green);
+}
+
+.inputBox {
+  display: flex;
+  border: 2px solid #c4c0c0;
+  border-radius: 4px;
+  padding: 0 0 0 5px;
+  transition: var(--transition-1);
+}
+
+.inputBox:hover, .inputBox:focus-within {
+  border: 2px solid var(--viridian-green);
+}
+
+#inputLabel {
+  font-size: var(--fs-6);
+  font-weight: var(--fw-2);
+  /* display: block; */
+  width: max-content;
+  margin: 7px 0;
+  color: var(--viridian-green);
+}
+
+#todoInput {
+  padding: 10px;
+  font-size: var(--fs-5);
+  width: 100%;
+  border: 2px solid #c4c0c0;
+  background-color: #ffffff;
+  overflow: auto;
+  border-width: 0 0 0 0;
+  border-radius: 4px;
+  transition: var(--transition-1);
+}
+
+#todoInput:focus {
+  border: 2px solid var(--viridian-green);
+  background-color: #f6f6f6;
+  border-width: 0 0 0 0;
+}
+
+#submitBtn {
+  width: 100%;
+  margin: 5px 0;
+  padding: 10px;
+  background-color: var(--viridian-green);
+  color: #fff;
+  font-size: 13px;
+  font-weight: var(--fw-1);
+  text-transform: uppercase;
+  border-radius: 4px;
+  border: 2px solid var(--viridian-green);
+  transition: var(--transition-1);
+}
+
+#submitBtn:focus, #submitBtn:hover {
+  border: 2px solid #017e7e;
+  color: #fff;
+  background-color: #017e7e;
+}
+
+#task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 5px;
+  margin: 5px 0;
+  background-color: #f6f6f6;
+  color: var(--viridian-green);
+  border-radius: 4px;
+  font-size: var(--fs-5);
+  font-weight: var(--fw-3);
+  font-family: var(--ff-cursive);
+  text-transform: capitalize;
+}
+
+#deleteModalTrigger {
+  color: #ff0000;
+  font-size: var(--fs-3);
+  cursor: pointer;
+  transition: var(--transition-2);
+}
+
+#deleteModalTrigger:hover {
+  font-weight: var(--fw-2);
+}
+
+#deleteModalTrigger:focus {
+  font-weight: var(--fw-2);
+}
+
+#doneModalTrigger {
+  color: #008000;
+  font-size: var(--fs-3);
+  cursor: pointer;
+  transition: var(--transition-2);
+}
+
+#doneModalTrigger:hover {
+  font-weight: var(--fw-2);
+}
+
+#doneModalTrigger:focus {
+  font-weight: var(--fw-2);
+}
+
+/* pop-up window */
+.modalButton {
+  border: none;
+  border-radius: 2px;
+  background: var(--viridian-green);
+  color: #fff;
+  padding: 4px 5px;
+  margin: 5px 1px;
+  width: 30px;
+  transition: var(--transition-1);
+}
+
+#delModalBox {
+  display: none;
+  top: 0;
+  left: 0;
+  position: fixed;
+  text-align: center;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  transition: var(--transition-1);
+}
+
+#delModalContents {
+  position: relative;
+  top: 45%;
+  left: 30%;
+  padding: 20px;
+  background-color: #fff;
+  color: var(--viridian-green);
+  text-transform: capitalize;
+  font-weight: var(--fw-3);
+  width: 40%;
+  border-radius: 4px;
+}
+
+#doneModalBox {
+  display: none;
+  top: 0;
+  left: 0;
+  position: fixed;
+  text-align: center;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  transition: var(--transition-1);
+}
+
+#doneModalContents {
+  position: relative;
+  top: 45%;
+  left: 20%;
+  padding: 20px;
+  background-color: #fff;
+  color: var(--viridian-green);
+  text-transform: capitalize;
+  font-weight: var(--fw-3);
+  width: 60%;
+  border-radius: 4px;
+}
+
+footer {
+  bottom: 0;
+  margin: 2.5rem 0 0 0;
+  padding: 10px;
+}
+
+#footerText {
+  font-size: var(--fs-5);
+}
+
+#footerName {
+  color: var(--viridian-green);
+  text-decoration: none;
+}
