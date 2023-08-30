@@ -1,86 +1,113 @@
-// fetching from html
-const todoInput = document.getElementById("todoInput");
-const todoUl = document.getElementById("todoUl");
-const submitBtn = document.getElementById("submitBtn");
-let list = [];
+const inputBox = document.querySelector("#todoInput");
+const todoList = document.querySelector("#todoUl");
+const submitBtn = document.querySelector("#submitBtn");
+const errorMessage = document.querySelector(".errorMessage");
 
-const listFromStorage = JSON.parse(localStorage.getItem("list"));
-// localStorage.clear()
-
-if (listFromStorage) {
-  list = listFromStorage;
-  render(list);
-}
-
-// fetching modal elements from html
-const deleteModalTrigger = document.getElementById("deleteModalTrigger");
-const doneModalTrigger = document.getElementById("doneModalTrigger");
+// Fetching modal elements from HTML
 const delModalBox = document.getElementById("delModalBox");
 const doneModalBox = document.getElementById("doneModalBox");
-let del = document.getElementById("delete");
+const del = document.getElementById("delete");
 const noDel = document.getElementById("noDelete");
 const done = document.getElementById("done");
 
-// display task
-function render(arr) {
-  listItems = "";
-  for (let i = 0; i < arr.length; i++) {
-    listItems += `
-    <li id="task">
-    <p id="taskText">${arr[i]}</p>
-    <div class="listButtons">
-      <span id="deleteModalTrigger">&#9746;</span>
-      <span id="doneModalTrigger">&#9745;</span>
-    </div>
-  </li>
-    `;
-  }
-  todoUl.innerHTML = listItems;
+// Variable to keep track of the selected task
+let selectedTask = null;
+
+// Function to save tasks to local storage
+function saveTasksToLocalStorage() {
+  const tasks = [];
+  const taskItems = document.querySelectorAll("#todoUl li");
+
+  taskItems.forEach((taskItem) => {
+    tasks.push(taskItem.textContent);
+  });
+
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-submitBtn.addEventListener("click", function () {
-  if (todoInput.value != "") {
-    list.push(todoInput.value);
-    todoInput.value = "";
+// Function to load tasks from local storage
+function loadTasksFromLocalStorage() {
+  const storedTasks = JSON.parse(localStorage.getItem("tasks"));
+
+  if (storedTasks && storedTasks.length > 0) {
+    storedTasks.forEach((taskText) => {
+      const task = createTaskElement(taskText);
+      todoList.appendChild(task);
+    });
   }
-  localStorage.setItem("list", JSON.stringify(list));
-  render(list);
-});
+}
 
-// popup window code
-deleteModalTrigger.addEventListener("click", function () {
-  delModalBox.style.display = "block";
-});
+// Function to create a task element
+function createTaskElement(taskText) {
+  const task = document.createElement("li");
+  task.setAttribute("id", "task");
+  const taskTextElement = document.createElement("p");
+  taskTextElement.setAttribute("id", "taskText");
+  taskTextElement.textContent = taskText.replace("☑", ""); // Remove the symbol from the task text
 
-doneModalTrigger.addEventListener("click", function () {
-  doneModalBox.style.display = "block";
-});
+  const deleteButton = document.createElement("span");
+  deleteButton.innerHTML = "&#9745;";
+  deleteButton.classList.add("listButtons");
+  deleteButton.addEventListener("click", function () {
+    // Set the selected task when the delete button is clicked
+    selectedTask = task;
+    delModalBox.style.display = "block";
+  });
 
-del.addEventListener("click", function () {
-  const delTask = list.splice(0, 1);
-  if (delTask) {
-    delModalBox.style.display = "none";
+  task.appendChild(taskTextElement);
+  task.appendChild(deleteButton);
+
+  return task;
+}
+
+// Load tasks from local storage when the page loads
+loadTasksFromLocalStorage();
+
+submitBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  const taskName = inputBox.value.trim();
+
+  if (taskName === "") {
+    errorMessage.textContent = "Please enter a task name.";
+  } else {
+    errorMessage.textContent = "";
+
+    const task = createTaskElement(taskName);
+    todoList.appendChild(task);
+
+    // Save tasks to local storage when a new task is added
+    saveTasksToLocalStorage();
+
+    inputBox.value = "";
   }
-  localStorage.setItem("list", JSON.stringify(list));
-  render(list);
+});
+
+del.addEventListener("click", () => {
+  if (selectedTask) {
+    selectedTask.remove();
+
+    // Save tasks to local storage after a task is deleted
+    saveTasksToLocalStorage();
+  }
+
+  delModalBox.style.display = "none";
+  selectedTask = null; // Reset selected task
 });
 
 noDel.addEventListener("click", function () {
   delModalBox.style.display = "none";
+  selectedTask = null; // Reset selected task
 });
 
 done.addEventListener("click", function () {
-  const doneTask = list.splice(0, 1);
-  if (doneTask) {
+  // You can add code here to handle marking a task as done
+  doneModalBox.style.display = "none";
+});
+
+window.addEventListener("click", function (event) {
+  if (event.target == delModalBox || event.target == doneModalBox) {
+    delModalBox.style.display = "none";
     doneModalBox.style.display = "none";
   }
-  localStorage.setItem("list", JSON.stringify(list));
-  render(list);
-})
-
-// window.addEventListener("click", function (event) {
-//   if (event.target == delModalBox || event.target == doneModalBox) {
-//     delModalBox.style.display = "none";
-//     doneModalBox.style.display = "none";
-//   }
-// });
+});

@@ -93,7 +93,7 @@ body {
 }
 
 h2 {
-  font-family: var(--ff-heebo);
+  font-family: var(--ff-cursive);
   font-weight: var(--fw-2);
   margin: 10px 0;
 }
@@ -119,6 +119,7 @@ h2 {
 
 .inputBox {
   display: flex;
+  flex-direction: column;
   border: 2px solid #c4c0c0;
   border-radius: 4px;
   padding: 0 0 0 5px;
@@ -130,11 +131,12 @@ h2 {
 }
 
 #inputLabel {
+  display: flex;
   font-size: var(--fs-6);
   font-weight: var(--fw-2);
   /* display: block; */
-  width: max-content;
-  margin: 7px 0;
+  width: 100%;
+  padding: 7px 7px;
   color: var(--viridian-green);
 }
 
@@ -178,6 +180,7 @@ h2 {
 
 #task {
   display: flex;
+  gap: 10px;
   justify-content: space-between;
   align-items: center;
   padding: 8px 5px;
@@ -187,26 +190,26 @@ h2 {
   border-radius: 4px;
   font-size: var(--fs-5);
   font-weight: var(--fw-3);
-  font-family: var(--ff-heebo);
+  font-family: var(--ff-cursive);
   text-transform: capitalize;
 }
 
-#deleteModalTrigger {
-  color: #ff0000;
+.listButtons {
+  color: #00ff48;
   font-size: var(--fs-3);
   cursor: pointer;
   transition: var(--transition-2);
 }
 
-#deleteModalTrigger:hover {
+.listButtons:hover {
   font-weight: var(--fw-2);
 }
 
-#deleteModalTrigger:focus {
+.listButtons:focus {
   font-weight: var(--fw-2);
 }
 
-#doneModalTrigger {
+/* #doneModalTrigger {
   color: #008000;
   font-size: var(--fs-3);
   cursor: pointer;
@@ -219,7 +222,7 @@ h2 {
 
 #doneModalTrigger:focus {
   font-weight: var(--fw-2);
-}
+} */
 
 /* pop-up window */
 .modalButton {

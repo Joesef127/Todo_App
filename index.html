@@ -1,48 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ToDo</title>
-    <link rel="shortcut icon" href="merlinhive_wht.png" type="image/x-icon" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Comforter+Brush&family=Heebo:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div class="container">
-      <h1 id="todoHeader">ToDo</h1>
-      <h2 id="thickNewTask">Create <span id="thinNewTask">New Task</span></h2>
-      <div class="inputBox">
-        <label for="todoInput" id="inputLabel">Task Name:</label>
-        <input type="text" id="todoInput" />
-      </div>
-      <button id="submitBtn">Create</button>
-      <h2 id="todoList">Task List</h2>
-      <ul id="todoUl">
-      </ul>
-      <div id="delModalBox">
-        <div id="delModalContents">
-          <p id="delModalText">delete task?</p>
-          <button id="delete" class="modalButton">yes</button>
-          <button id="noDelete" class="modalButton">no</button>
-        </div>
-      </div>
-      <div id="doneModalBox">
-        <div id="doneModalContents">
-          <p id="doneModalText">task completed, weldone!</p>
-          <button id="done" class="modalButton">ok</button>
-        </div>
-      </div>
-    </div>
-      <!-- <footer>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ToDo</title>
+		<link rel="shortcut icon" href="merlinhive_wht.png" type="image/x-icon" />
+		<link rel="stylesheet" href="style.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Comforter+Brush&family=Heebo:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<div class="container">
+			<h1 id="todoHeader">ToDo</h1>
+			<h2 id="thickNewTask">Create <span id="thinNewTask">New Task</span></h2>
+      <p class="errorMessage"></p>
+			<form method="post" class="inputBox">
+				<label for="todoInput" id="inputLabel">
+          Task Name:
+				<input type="text" id="todoInput" />          
+        </label>
+			</form>
+				<button id="submitBtn">Create</button>
+			<h2 id="todoList">Task List</h2>
+			<ul id="todoUl"></ul>
+			<div id="delModalBox">
+				<div id="delModalContents">
+					<p id="delModalText">delete task?</p>
+					<button id="delete" class="modalButton">yes</button>
+					<button id="noDelete" class="modalButton">no</button>
+				</div>
+			</div>
+			<div id="doneModalBox">
+				<div id="doneModalContents">
+					<p id="doneModalText">task completed, weldone!</p>
+					<button id="done" class="modalButton">ok</button>
+				</div>
+			</div>
+			<a href="#" target="_blank"></a>
+		</div>
+		<!-- <footer>
         <p id="footerText">created by <span><a href="https://github.com/Joesef127" id="footerName">Joesef</a></span></p>
       </footer> -->
-    <script src="script.js"></script>
-  </body>
+		<script src="script.js"></script>
+	</body>
 </html>
