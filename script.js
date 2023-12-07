@@ -19,7 +19,7 @@ function saveTasksToLocalStorage() {
   const taskItems = document.querySelectorAll("#todoUl li");
 
   taskItems.forEach((taskItem) => {
-    tasks.push(taskItem.textContent);
+    tasks.unshift(taskItem.textContent);
   });
 
   localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -32,7 +32,7 @@ function loadTasksFromLocalStorage() {
   if (storedTasks && storedTasks.length > 0) {
     storedTasks.forEach((taskText) => {
       const task = createTaskElement(taskText);
-      todoList.appendChild(task);
+      todoList.prepend(task);
     });
   }
 }
@@ -74,7 +74,7 @@ submitBtn.addEventListener("click", (e) => {
     errorMessage.textContent = "";
 
     const task = createTaskElement(taskName);
-    todoList.appendChild(task);
+    todoList.prepend(task);
 
     // Save tasks to local storage when a new task is added
     saveTasksToLocalStorage();
